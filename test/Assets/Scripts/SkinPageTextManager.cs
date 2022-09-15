@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using TMPro;
 
 public class SkinPageTextManager : MonoBehaviour
@@ -31,5 +32,10 @@ public class SkinPageTextManager : MonoBehaviour
     public void Skin5Text()
     {
         textMeshPro.text = "2ㅁㅎㅁㄴ님 크레이지 모드 천점 달성!";
+    }
+
+    public void PageToStartPage()
+    {
+        SceneManager.LoadScene("StartPageScene", LoadSceneMode.Single);
     }
 }
