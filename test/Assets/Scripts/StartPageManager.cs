@@ -9,7 +9,7 @@ public class StartPageManager : MonoBehaviour
     public TextMeshProUGUI coinText;
     float coin;
 
-    AudioSource AudioSource;
+    public AudioSource AudioSource;
     // Start is called before the first frame update
     void Start()
     {

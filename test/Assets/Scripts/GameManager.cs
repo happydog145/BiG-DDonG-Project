@@ -122,8 +122,7 @@ public class GameManager : MonoBehaviour
         maxScore = score;
         GameLoad();
 
-        AudioSource.clip = audioClip;
-        AudioSource.volume = volume;
+        AudioSource.clip = audioClip;     
         playerLayer = LayerMask.NameToLayer("Player");
         ddongLayer = LayerMask.NameToLayer("ddong");     
     }
@@ -131,7 +130,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        AudioSource.volume = volume;
         if (isDdongActive) { isDdongActive = false; StartCoroutine(DdongIns()); }
         if (isCoin1Active) { isCoin1Active = false; StartCoroutine(Coin1Ins()); }
         if (isCoin10Active) { isCoin10Active = false; StartCoroutine(Coin10Ins()); }
