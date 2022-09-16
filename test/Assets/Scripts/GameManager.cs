@@ -8,7 +8,12 @@ public class GameManager : MonoBehaviour
     // gm
     public static GameManager instance;
 
-    //instantiate player
+    // audio source
+    public AudioClip audioClip;
+    public AudioSource AudioSource;
+    public float volume;
+
+    // instantiate player
     public GameObject Player;
     
     // score system
@@ -105,6 +110,11 @@ public class GameManager : MonoBehaviour
         maxScore = PlayerPrefs.GetFloat("MaxScore");
     }
 
+    private void Awake()
+    {
+        AudioSource = GetComponent<AudioSource>();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -112,8 +122,10 @@ public class GameManager : MonoBehaviour
         maxScore = score;
         GameLoad();
 
+        AudioSource.clip = audioClip;
+        AudioSource.volume = volume;
         playerLayer = LayerMask.NameToLayer("Player");
-        ddongLayer = LayerMask.NameToLayer("ddong");      
+        ddongLayer = LayerMask.NameToLayer("ddong");     
     }
 
     // Update is called once per frame
