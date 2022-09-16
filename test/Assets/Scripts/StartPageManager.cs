@@ -9,11 +9,9 @@ public class StartPageManager : MonoBehaviour
     public TextMeshProUGUI coinText;
     float coin;
 
-    public AudioSource AudioSource;
     // Start is called before the first frame update
     void Start()
     {
-        AudioSource = GetComponent<AudioSource>();
         coin = PlayerPrefs.GetFloat("Coins");       
     }
 

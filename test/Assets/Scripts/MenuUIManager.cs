@@ -6,12 +6,13 @@ using UnityEngine.UI;
 public class MenuUIManager : MonoBehaviour
 {
     Slider slider;
-    StartPageManager start;
+    MenuAudioManager menu;
+    public GameObject menuUI;
     // Start is called before the first frame update
     private void Awake()
     {
-        start = GetComponent<StartPageManager>();
         slider = GetComponent<Slider>();
+        menu = GetComponent<MenuAudioManager>();
     }
 
     void Start()
@@ -19,19 +20,17 @@ public class MenuUIManager : MonoBehaviour
 
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+        if (Input.GetButtonDown("Cancel"))
+        {
+            if (menuUI.activeSelf) { menuUI.SetActive(false); }
+            else { menuUI.SetActive(true); }
+        }
     }
 
-    public void MainPageAudioManager(float volume)
+    public void Quit()
     {
-        GameManager.instance.volume = volume;
-    }
-
-    public void StartPageAudioManager(float volume)
-    {
-        start.AudioSource.volume = volume;
+        Application.Quit();
     }
 }
