@@ -13,11 +13,12 @@ public class MenuUIManager : MonoBehaviour
     {
         slider = GetComponent<Slider>();
         menu = GetComponent<MenuAudioManager>();
+        menuUI.SetActive(false);
     }
 
     void Start()
     {
-
+        
     }
 
     private void Update()

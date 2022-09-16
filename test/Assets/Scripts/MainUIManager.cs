@@ -4,20 +4,12 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class UIManager : MonoBehaviour
+public class MainUIManager : MonoBehaviour
 {
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI coinText;
     public TextMeshProUGUI maxScoreText;
     public TextMeshProUGUI scoreLiveText;
-
-    public bool isFullScreen = false;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        Screen.SetResolution(1920, 1080, FullScreenMode.Windowed);
-    }
 
     // Update is called once per frame
     void Update()
@@ -25,17 +17,5 @@ public class UIManager : MonoBehaviour
         scoreText.text = scoreLiveText.text = string.Format("{0:n0}", GameManager.instance.score);
         coinText.text = string.Format("{0:n0}", GameManager.instance.coin);
         maxScoreText.text = string.Format("{0:n0}", GameManager.instance.maxScore);
-    }
-
-    public void SetFullScreenBool(bool isFullScreen)
-    {
-        if (isFullScreen)
-        {
-            Screen.SetResolution(1920, 1080, FullScreenMode.FullScreenWindow);
-        }
-        else
-        {
-            Screen.SetResolution(1920, 1080, FullScreenMode.Windowed);
-        }
     }
 }

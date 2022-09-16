@@ -12,6 +12,7 @@ public class StartPageManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        SceneManager.LoadScene(3, LoadSceneMode.Additive);
         coin = PlayerPrefs.GetFloat("Coins");       
     }
 

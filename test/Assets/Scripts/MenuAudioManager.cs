@@ -13,6 +13,7 @@ public class MenuAudioManager : MonoBehaviour
     {
         audio = GetComponent<AudioSource>();
         audio.clip = mainTheme;
+        audio.Play();
     }
 
     public void SetMainTheme()
