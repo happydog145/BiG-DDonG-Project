@@ -78,7 +78,14 @@ public class GameManager : MonoBehaviour
     int playerLayer;
     int ddongLayer;
     public float dontHitTime;
-  
+
+    // Coin Audio Source
+    public AudioSource audioSource;
+    public AudioClip clip1;
+    public AudioClip clip2;
+    public bool isCoinHit = false;
+    public bool isCoin500Hit = false;
+
     // mode set func
     public void EasyModeSet()
     {
@@ -112,11 +119,18 @@ public class GameManager : MonoBehaviour
         isCrazy = true;
     }
 
+    // Button Script
     public void GameQuit()
     {
         Application.Quit();
     }
 
+    public void MoveToStartScene()
+    {
+        SceneManager.LoadScene("StartPageScene", LoadSceneMode.Single);
+    }
+
+    // Save Function
     public void GameSave()
     {
         PlayerPrefs.SetFloat("Coins", coin);
@@ -138,6 +152,11 @@ public class GameManager : MonoBehaviour
         crazyMaxScore = PlayerPrefs.GetFloat("CrazyScore");
     }
 
+    void Awake()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -157,6 +176,10 @@ public class GameManager : MonoBehaviour
         if (isCoin10Active) { isCoin10Active = false; StartCoroutine(Coin10Ins()); }
         if (isCoin100Active) { isCoin100Active = false; StartCoroutine(Coin100Ins()); }
         if (isCoin500Active) { isCoin500Active = false; StartCoroutine(Coin500Ins()); }
+
+        if (isCoinHit) { isCoinHit = false; audioSource.PlayOneShot(clip1); }
+
+        if (isCoin500Hit) { isCoin500Hit = false; audioSource.PlayOneShot(clip2); }
 
         if (isGameStart) 
         {    

@@ -13,7 +13,7 @@ public class MenuResolution : MonoBehaviour
 
     public void GetBoolFullScreen(bool isFull)
     {
-        isFull = isFullScreen;
+        isFullScreen = isFull;
     }
 
     void Update()

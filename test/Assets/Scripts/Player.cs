@@ -65,24 +65,28 @@ public class Player : MonoBehaviour
         {
             Debug.Log("+1 Coin");
             GameManager.instance.coin += 1;
+            GameManager.instance.isCoinHit = true;
         }
 
         if (collision.gameObject.tag == "Coin_10")
         {
             Debug.Log("+10 Coin");
             GameManager.instance.coin += 10;
+            GameManager.instance.isCoinHit = true;
         }
 
         if (collision.gameObject.tag == "Coin_100")
         {
             Debug.Log("+100 Coin");
             GameManager.instance.coin += 100;
+            GameManager.instance.isCoinHit = true;
         }
 
         if (collision.gameObject.tag == "Coin_500")
         {
             Debug.Log("+500 Coin");
             GameManager.instance.coin += 500;
+            GameManager.instance.isCoin500Hit = true;
         }
 
         if (collision.gameObject.tag == "ground")
