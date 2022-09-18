@@ -51,6 +51,23 @@ public class GameManager : MonoBehaviour
     public float hardDelay;
     public float crazyDelay;
 
+    public float easyScoreMultiply;
+    public float normalScoreMultiply;
+    public float hardScoreMultiply;
+    public float crazyScoreMultiply;
+
+    float ScoreMultiply;
+
+    public float easyMaxScore = 0;
+    public float normalMaxScore = 0;
+    public float hardMaxScore = 0;
+    public float crazyMaxScore = 0;
+
+    bool isEasy;
+    bool isNormal;
+    bool isHard;
+    bool isCrazy;
+
     // game start/over
     public GameObject GameOverUI;
     public bool isGameStart = false;
@@ -65,26 +82,34 @@ public class GameManager : MonoBehaviour
     // mode set func
     public void EasyModeSet()
     {
+        ScoreMultiply = easyScoreMultiply;
         delay = easyDelay;
         isGameStart = true;
-}
+        isEasy = true;
+    }
 
     public void NormalModeSet()
     {
+        ScoreMultiply = normalScoreMultiply;
         delay = normalDelay;
         isGameStart = true;
+        isNormal = true;
     }
 
     public void HardModeSet()
     {
+        ScoreMultiply = hardScoreMultiply;
         delay = hardDelay;
         isGameStart = true;
+        isHard = true;
     }
 
     public void CrazyModeSet()
     {
+        ScoreMultiply = crazyScoreMultiply;
         delay = crazyDelay;
         isGameStart = true;
+        isCrazy = true;
     }
 
     public void GameQuit()
@@ -96,6 +121,10 @@ public class GameManager : MonoBehaviour
     {
         PlayerPrefs.SetFloat("Coins", coin);
         PlayerPrefs.SetFloat("MaxScore", maxScore);
+        PlayerPrefs.SetFloat("EasyScore", easyMaxScore);
+        PlayerPrefs.SetFloat("NormalScore", normalMaxScore);
+        PlayerPrefs.SetFloat("HardScore", hardMaxScore);
+        PlayerPrefs.SetFloat("CrazyScore", crazyMaxScore);
         PlayerPrefs.Save();
     }
 
@@ -103,13 +132,15 @@ public class GameManager : MonoBehaviour
     {
         coin = PlayerPrefs.GetFloat("Coins");
         maxScore = PlayerPrefs.GetFloat("MaxScore");
+        easyMaxScore = PlayerPrefs.GetFloat("EasyScore");
+        normalMaxScore = PlayerPrefs.GetFloat("NormalScore");
+        hardMaxScore = PlayerPrefs.GetFloat("HardScore");
+        crazyMaxScore = PlayerPrefs.GetFloat("CrazyScore");
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        SceneManager.LoadScene("MenuScene", LoadSceneMode.Additive);
-
         instance = this;
         maxScore = score;
         GameLoad();
@@ -138,7 +169,7 @@ public class GameManager : MonoBehaviour
         
         if (isGaming)
         {
-            score += Time.deltaTime * 10;
+            score += Time.deltaTime * 10 * ScoreMultiply;
         }
 
         if (isGameOver)
@@ -146,12 +177,21 @@ public class GameManager : MonoBehaviour
             isCoin1Active = isCoin10Active = isCoin100Active = isCoin500Active = false;
             isGaming = false; isGameOver = false;
             GameOverUI.SetActive(true); delay = easyDelay;
+            isEasy = false;
+            isNormal = false;
+            isHard = false;
+            isCrazy = false;
         }
 
         if (score > maxScore)
         {
             maxScore = score;
         }
+
+        if (score > easyMaxScore && isEasy) { easyMaxScore = score; }
+        if (score > normalMaxScore && isNormal) { normalMaxScore = score; }
+        if (score > hardMaxScore && isHard) { hardMaxScore = score; }
+        if (score > crazyMaxScore && isCrazy) { crazyMaxScore = score; }
 
         GameSave();
     }

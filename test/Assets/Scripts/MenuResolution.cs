@@ -16,6 +16,11 @@ public class MenuResolution : MonoBehaviour
         isFull = isFullScreen;
     }
 
+    void Update()
+    {
+        Screen.fullScreen = isFullScreen;
+    }
+
     public void Resoulution1()
     {
         Screen.SetResolution(2560, 1440, isFullScreen);

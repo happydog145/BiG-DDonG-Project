@@ -8,12 +8,33 @@ public class StartPageManager : MonoBehaviour
 {
     public TextMeshProUGUI coinText;
     float coin;
+    public GameObject menuUI;
 
+    MenuUIManager menuUIManager;
+    public AudioClip clip;
+
+    void Awake()
+    {
+        var objs = FindObjectsOfType<MenuUIManager>();
+        Debug.Log(objs.Length);
+
+        if (objs.Length == 1)
+        {
+            DontDestroyOnLoad(menuUI);
+        }
+        else
+        {
+            Destroy(menuUI);
+        }
+
+        menuUIManager = GetComponent<MenuUIManager>();
+        menuUIManager.audioSource.clip = clip;
+        menuUIManager.audioSource.pitch = 1f;
+    }
     // Start is called before the first frame update
     void Start()
     {
-        SceneManager.LoadScene(3, LoadSceneMode.Additive);
-        coin = PlayerPrefs.GetFloat("Coins");       
+        coin = PlayerPrefs.GetFloat("Coins");               
     }
 
     // Update is called once per frame
@@ -23,12 +44,12 @@ public class StartPageManager : MonoBehaviour
     }
 
     public void NextScene()
-    {
-        SceneManager.LoadScene("MainScene", LoadSceneMode.Single);
+    {        
+        SceneManager.LoadScene("MainScene", LoadSceneMode.Single);         
     }
 
     public void SkinPageScene()
-    {
-        SceneManager.LoadScene("SkinPageScene", LoadSceneMode.Single);
+    {        
+        SceneManager.LoadScene("SkinPageScene", LoadSceneMode.Single);       
     }
 }

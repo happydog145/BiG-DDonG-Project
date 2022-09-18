@@ -6,13 +6,13 @@ using UnityEngine.UI;
 public class MenuUIManager : MonoBehaviour
 {
     Slider slider;
-    MenuAudioManager menu;
     public GameObject menuUI;
+    public AudioSource audioSource;
     // Start is called before the first frame update
     private void Awake()
     {
+        audioSource = GetComponent<AudioSource>();
         slider = GetComponent<Slider>();
-        menu = GetComponent<MenuAudioManager>();
         menuUI.SetActive(false);
     }
 
