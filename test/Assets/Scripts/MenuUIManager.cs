@@ -7,11 +7,10 @@ public class MenuUIManager : MonoBehaviour
 {
     Slider slider;
     public GameObject menuUI;
-    public AudioSource audioSource;
+
     // Start is called before the first frame update
     private void Awake()
-    {
-        audioSource = GetComponent<AudioSource>();
+    {       
         slider = GetComponent<Slider>();
         menuUI.SetActive(false);
     }

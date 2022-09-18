@@ -10,9 +10,6 @@ public class StartPageManager : MonoBehaviour
     float coin;
     public GameObject menuUI;
 
-    MenuUIManager menuUIManager;
-    public AudioClip clip;
-
     void Awake()
     {
         var objs = FindObjectsOfType<MenuUIManager>();
@@ -25,11 +22,7 @@ public class StartPageManager : MonoBehaviour
         else
         {
             Destroy(menuUI);
-        }
-
-        menuUIManager = GetComponent<MenuUIManager>();
-        menuUIManager.audioSource.clip = clip;
-        menuUIManager.audioSource.pitch = 1f;
+        }      
     }
     // Start is called before the first frame update
     void Start()

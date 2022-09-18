@@ -14,11 +14,13 @@ public class Coin : MonoBehaviour
     SpriteRenderer spriteRenderer;
     Collider2D col;
     Rigidbody2D rigid;
+    AudioSource audioSource;
         
     // Start is called before the first frame update
     void Start()
     {
         coin = this.gameObject;
+        audioSource = GetComponent<AudioSource>();
         rigid = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         col = GetComponent<Collider2D>();        
@@ -33,6 +35,7 @@ public class Coin : MonoBehaviour
             col.enabled = false;                
             if(collision.gameObject.tag == "Player")
             {
+                audioSource.Play();
                 Destroy(coin);
             }
             else if (collision.gameObject.tag == "ground")

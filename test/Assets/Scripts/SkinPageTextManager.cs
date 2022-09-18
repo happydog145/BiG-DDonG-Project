@@ -8,13 +8,11 @@ public class SkinPageTextManager : MonoBehaviour
 {
     public TextMeshProUGUI textMeshPro;
 
-    MenuUIManager menuUIManager;
-    public AudioClip clip;
     // Start is called before the first frame update
 
     void Start()
     {
-        menuUIManager = GetComponent<MenuUIManager>();     
+       
     }
 
     public void Skin1Text()
